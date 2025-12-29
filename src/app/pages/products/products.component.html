@@ -1,0 +1,10 @@
+<h2>Plants Available</h2>
+
+<div class="product-grid">
+  <div class="product-card" *ngFor="let plant of plants">
+    <img [src]="plant.image" alt="{{plant.name}}">
+    <h3>{{plant.name}}</h3>
+    <p class="price">₹{{plant.price}}</p>
+    <button class="btn-add" (click)="addProduct(plant)">Add to Cart</button>
+  </div>
+</div>

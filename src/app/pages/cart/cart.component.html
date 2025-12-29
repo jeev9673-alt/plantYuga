@@ -1,0 +1,13 @@
+<div *ngIf="cartItems.length > 0">
+  <div class="cart-item" *ngFor="let item of cartItems; let i = index">
+    <span>{{item.name}} - ₹{{item.price}}</span>
+    <button (click)="removeItem(i)">Remove</button>
+  </div>
+
+  <h3>Total: ₹{{total}}</h3>
+
+  <div class="actions">
+    <button (click)="clearCart()">Clear Cart</button>
+    <button routerLink="/checkout">Proceed to Checkout</button>
+  </div>
+</div>

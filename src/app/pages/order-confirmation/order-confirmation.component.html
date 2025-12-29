@@ -1,0 +1,12 @@
+<h2>Order Confirmed! 🎉</h2>
+<p>Thank you for your purchase.</p>
+
+<div *ngIf="order.orderId">
+  <h3>Your Order ID: {{ order.orderId }}</h3>
+  <p><strong>Total:</strong> ₹{{ order.total }}</p>
+  <p><strong>Delivery To:</strong> {{ order.name }}, {{ order.phone }}</p>
+  <p>{{ order.address }}</p>
+</div>
+
+<button routerLink="/track">Track Order</button>
+<button routerLink="/products">Back to Products</button>

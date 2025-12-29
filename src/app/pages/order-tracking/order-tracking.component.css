@@ -1,0 +1,20 @@
+h2 {
+  margin: 20px 0;
+  font-size: 28px;
+}
+p, li {
+  font-size: 18px;
+  margin: 5px 0;
+}
+button {
+  margin-top: 15px;
+  background: #2e7d32;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #256529;
+}

@@ -1,0 +1,22 @@
+<h2>Checkout</h2>
+
+<form (submit)="placeOrder()">
+
+  <label>Full Name</label>
+  <input type="text" [(ngModel)]="name" name="name" required>
+
+  <label>Phone Number</label>
+  <input type="text" [(ngModel)]="phone" name="phone" required minlength="10">
+
+  <label>Delivery Address</label>
+  <textarea [(ngModel)]="address" name="address" required></textarea>
+
+  <label>Payment Method</label> 
+  <select [(ngModel)]="paymentMethod" name="paymentMethod">
+    <option value="COD">Cash On Delivery</option>
+    <option value="UPI">UPI Payment</option>
+  </select>
+
+  <button type="submit">Place Order</button>
+
+</form>

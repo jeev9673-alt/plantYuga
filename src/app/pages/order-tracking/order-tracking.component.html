@@ -1,0 +1,25 @@
+<h2 style="text-align:center;">Track Your Order 📦</h2>
+
+<div *ngIf="order; else noOrder">
+  <p><strong>Order ID:</strong> {{order.orderId}}</p>
+  <p><strong>Name:</strong> {{order.name}}</p>
+  <p><strong>Phone:</strong> {{order.phone}}</p>
+  <p><strong>Address:</strong> {{order.address}}</p>
+  <p><strong>Payment:</strong> {{order.paymentMethod}}</p>
+
+  <h3>Items:</h3>
+  <ul>
+    <li *ngFor="let item of order.items">
+       {{item.name}} - ₹{{item.price}}
+    </li>
+  </ul>
+
+  <h3>Total: ₹{{order.total}}</h3>
+
+  <h3>Status: <span style="color:green;">🟢 Order Confirmed</span></h3>
+</div>
+
+<ng-template #noOrder>
+  <p>No recent orders found ❌</p>
+  <button routerLink="/products">Shop Now</button>
+</ng-template>
