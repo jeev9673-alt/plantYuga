@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterOutlet, RouterLink } from '@angular/router';
+import { CartService } from './services/cart.service';
 
 @Component({
   selector: 'app-root',
@@ -8,4 +9,12 @@ import { RouterOutlet, RouterLink } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {}
+export class AppComponent {
+  cartCount = 0; // << THIS IS WHERE cartCount IS DEFINED
+
+  constructor(private cartService: CartService) {}
+
+  ngOnInit() {
+    this.cartCount = this.cartService.getCart().length;
+  }
+}

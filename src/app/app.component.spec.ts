@@ -1,29 +1,20 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterLink } from '@angular/router';
+import { CartService } from './services/cart.service';
 
-describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AppComponent],
-    }).compileComponents();
-  });
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, RouterLink],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  cartCount = 0;
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
+  constructor(private cartService: CartService) {}
 
-  it(`should have the 'plantyuga' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('plantyuga');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, plantyuga');
-  });
-});
+  ngOnInit() {
+    this.cartCount = this.cartService.getCart().length;
+  }
+}

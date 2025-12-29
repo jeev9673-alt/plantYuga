@@ -1,9 +1,18 @@
-<nav>
-  <a routerLink="">Home</a>
-  <a routerLink="products">Products</a>
-  <a routerLink="cart">Cart</a>
-</nav>
+<header class="site-header">
+  <div class="brand">
+    🌿 PlantYuga <span>RR Nagar</span>
+  </div>
+  <nav>
+    <a routerLink="/">Home</a>
+    <a routerLink="/products">Products</a>
+    <a routerLink="/cart">
+      Cart 🛒 <span class="cart-count">{{ cartCount }}</span>
+    </a>
+  </nav>
+</header>
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+<router-outlet></router-outlet>
+
+<footer class="site-footer">
+  <p>© 2025 PlantYuga • Made with ❤️ in Bangalore</p>
+</footer>
