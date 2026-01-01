@@ -1,29 +1,37 @@
-import { Component } from '@angular/core';
-import { NgFor } from '@angular/common'; 
+import { Component, OnInit } from '@angular/core';
+import { NgFor } from '@angular/common'; // 👈 ADD THIS
+import { ProductService } from '../../services/product.service';
 import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [NgFor], 
+  imports: [NgFor], // 👈 INCLUDE HERE
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
+export class ProductsComponent implements OnInit {
 
-export class ProductsComponent {
-  plants = [
-    { name: 'Snake Plant', price: 349, image: 'https://picsum.photos/200?random=1' },
-    { name: 'Aloe Vera', price: 149, image: 'https://picsum.photos/200?random=2' },
-    { name: 'Jade Plant', price: 249, image: 'https://picsum.photos/200?random=3' },
-    { name: 'Money Plant', price: 199, image: 'https://picsum.photos/200?random=4' },
-    { name: 'ZZ Plant', price: 499, image: 'https://picsum.photos/200?random=5' },
-    { name: 'Areca Palm', price: 299, image: 'https://picsum.photos/200?random=6' }
-  ];
+  products: any[] = [];
 
-constructor(private cartService: CartService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
-addProduct(product: any) {
-  this.cartService.addToCart(product);
-  alert(`${product.name} added to cart!`);
-}
+  ngOnInit(): void {
+    this.loadProducts();
+  }
+
+  loadProducts() {
+    this.productService.getAllProducts().subscribe({
+      next: (res) => this.products = res,
+      error: (err) => console.error('Failed to load products =>', err)
+    });
+  }
+
+  addToCart(item: any) {
+    this.cartService.addToCart(item);
+    alert("Added to cart!");
+  }
 }

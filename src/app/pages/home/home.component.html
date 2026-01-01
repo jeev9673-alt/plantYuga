@@ -1,23 +1,46 @@
+<!-- 🌿 HERO SECTION -->
 <section class="hero">
-  <h1>Welcome to PlantYuga 🌿</h1>
-  <p>Indoor Plants Delivered in RR Nagar - Bangalore</p>
-  <button routerLink="/products" class="btn-shop">Shop Now</button>
-</section>
-
-<section class="categories">
-  <h2>Shop by Category</h2>
-  <div class="category-grid">
-    <div class="category-card">Indoor Plants</div>
-    <div class="category-card">Balcony Plants</div>
-    <div class="category-card">Office Desk Plants</div>
+  <div class="hero-content">
+    <h1>Welcome to <span>PlantYuga</span> 🌿</h1>
+    <p>Indoor plants delivered to your door — fresh, healthy and home-ready.</p>
+    <button routerLink="/products" class="btn-primary">Shop Now</button>
   </div>
 </section>
 
+<div class="categories-container">
+  <button (click)="filterCategory(1)">🏡 Indoor Plants</button>
+  <button (click)="filterCategory(2)">🌿 Balcony Plants</button>
+  <button (click)="filterCategory(3)">💼 Office Desk Plants</button>
+  <button (click)="filterCategory(4)">🐶 Pet Friendly</button>
+</div>
+
+<div class="filtered-products" *ngIf="filtered.length > 0">
+  <h3>Filtered Products ({{ filtered.length }} items found)</h3>
+  <div class="product-grid">
+    <div class="product-card" *ngFor="let p of filtered">
+      <img [src]="p.imageUrl" [alt]="p.name">
+      <h4>{{ p.name }}</h4>
+      <p>₹{{ p.price }}</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- FEATURED PRODUCTS -->
 <section class="featured">
-  <h2>Featured Plants</h2>
-  <div class="featured-grid">
-    <div class="plant-card">Snake Plant - ₹349</div>
-    <div class="plant-card">Aloe Vera - ₹149</div>
-    <div class="plant-card">Jade Plant - ₹249</div>
+  <h2>Best Sellers</h2>
+  <div class="highlight-cards">
+    <div class="product-card">
+      <img src="assets/sample1.jpg" alt="">
+      <h3>Snake Plant</h3>
+      <p>₹349</p>
+      <button class="btn-cart">Add to Cart</button>
+    </div>
+    <div class="product-card">
+      <img src="assets/sample2.jpg" alt="">
+      <h3>ZZ Plant</h3>
+      <p>₹499</p>
+      <button class="btn-cart">Add to Cart</button>
+    </div>
   </div>
 </section>

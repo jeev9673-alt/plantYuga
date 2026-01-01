@@ -1,18 +1,47 @@
-<header class="site-header">
-  <div class="brand">
-    🌿 PlantYuga <span>RR Nagar</span>
+<!-- 🌿 HEADER / NAVBAR -->
+<header class="navbar">
+  <div class="logo" routerLink="/">
+    <!--<img src="assets/logo.png" alt="PlantYuga"> -->
+    <span>PlantYuga</span> <small> RR Nagar</small>
   </div>
-  <nav>
+
+  <!-- MENU ICON (Mobile) -->
+  <div class="mobile-menu" (click)="toggleMenu()">☰</div>
+
+  <!-- NAV LINKS -->
+  <nav [class.active]="menuOpen">
     <a routerLink="/">Home</a>
-    <a routerLink="/products">Products</a>
-    <a routerLink="/cart">
-      Cart 🛒 <span class="cart-count">{{ cartCount }}</span>
+    <a routerLink="/products">Shop</a>
+    <a routerLink="/services">Services</a>
+    <a routerLink="/gallery">Gallery</a>
+    <a routerLink="/contact">Contact</a>
+
+    <a routerLink="/cart" class="cart-link">
+      🛒 Cart <span class="badge">{{ cartCount }}</span>
     </a>
   </nav>
+
+  
 </header>
 
+<!-- ROUTER VIEW -->
 <router-outlet></router-outlet>
 
-<footer class="site-footer">
-  <p>© 2025 PlantYuga • Made with ❤️ in Bangalore</p>
+<section class="hero-slider">
+  <ngx-slick [config]="slideConfig" class="slider">
+    <div ngxSlickItem *ngFor="let slide of slides" class="slide">
+      <img [src]="slide.image" alt="{{slide.title}}" />
+      <div class="content">
+        <h2>{{ slide.title }}</h2>
+        <p>{{ slide.subtitle }}</p>
+        <button (click)="goTo(slide.link)">Shop Now</button>
+      </div>
+    </div>
+  </ngx-slick>
+</section>
+
+
+<!-- 🌿 FOOTER -->
+<footer>
+  © 2025 PlantYuga • Made with 💚 in Bangalore
 </footer>

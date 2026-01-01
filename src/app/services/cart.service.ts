@@ -1,34 +1,37 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  cartKey = 'plantyuga-cart';
+  private cart: any[] = [];
 
-  // Get cart items
+  // 🔥 This will notify components when cart changes
+  cartChanged = new BehaviorSubject<void>(undefined);
+
   getCart() {
-    const cart = localStorage.getItem(this.cartKey);
-    return cart ? JSON.parse(cart) : [];
+    return this.cart;
   }
 
-  // Add to cart
-  addToCart(product: any) {
-    const cart = this.getCart();
-    cart.push(product);
-    localStorage.setItem(this.cartKey, JSON.stringify(cart));
+  addToCart(item: any) {
+    this.cart.push(item);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+
+    this.cartChanged.next(); // 🔥 Emit update
   }
 
-  // Remove one item
-  removeFromCart(index: number) {
-    const cart = this.getCart();
-    cart.splice(index, 1);
-    localStorage.setItem(this.cartKey, JSON.stringify(cart));
+  removeItem(index: number) {
+    this.cart.splice(index, 1);
+    localStorage.setItem('cart', JSON.stringify(this.cart));
+
+    this.cartChanged.next(); // 🔥 Emit update
   }
 
-  // Clear cart
   clearCart() {
-    localStorage.removeItem(this.cartKey);
+    this.cart = [];
+    localStorage.removeItem('cart');
+    this.cartChanged.next(); // 🔥 Emit update
   }
 }
